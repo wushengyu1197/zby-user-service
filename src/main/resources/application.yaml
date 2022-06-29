@@ -1,0 +1,52 @@
+server:
+  port: 8085
+
+spring:
+  thymeleaf:
+      prefix: classpath:/static/views/
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://39.96.14.47:3306/shopping?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+
+  jpa:
+    open-in-view: false
+
+  redis:
+    # redis数据库索引(默认为0)，我们使用索引为3的数据库，避免和其他数据库冲突
+    database: 0
+    # redis服务器地址（默认为loaclhost）
+    host: 39.96.14.47
+    # redis端口（默认为6379）
+    port: 6379
+    # redis访问密码（默认为空）
+    password:
+    # redis连接超时时间（单位毫秒）
+    timeout: 30000
+    # redis连接池配置
+    pool:
+      # 最大可用连接数（默认为8，负数表示无限）
+      max-active: 8
+      # 最大空闲连接数（默认为8，负数表示无限）
+      max-idle: 8
+      # 最小空闲连接数（默认为0，该值只有为正数才有用）
+      min-idle: 0
+      # 从连接池中获取连接最大等待时间（默认为-1，单位为毫秒，负数表示无限）
+      max-wait: -1
+# 日志
+logging:
+  level:
+    com.study.springboot.dao: info
+
+
+mybatis-pus:
+  mapper-locations: classpath*:com/shopping/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
